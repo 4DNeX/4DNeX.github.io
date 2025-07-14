@@ -160,9 +160,10 @@
 
     <!-- add video files/teaser_vid_v2_lowres.mp4 -->
     <!-- <video width="100%" controls> -->
-    <video width="100%" controls poster="./assets/overview_poster.png">
-      <source src="./assets/overview.mp4" type="video/mp4">
+    <video width="100%" autoplay muted loop playsinline poster="./assets/teaser_poster.png">
+      <source src="./assets/teaser.mp4" type="video/mp4">
     </video>
+    
     <br>
     <br>
 
@@ -274,7 +275,10 @@
         4DNeX produces high-quality dynamic point clouds that enable novel-view video synthesis. Extensive experiments demonstrate that 4DNeX achieves competitive performance compared to existing 4D generation approaches, offering a scalable and generalizable solution for single-image-based 4D scene generation.
       </p>
     </font>
-  <img class="summary-img" src="./assets/teaser.png" style="width:100%;">
+  <!-- <img class="summary-img" src="./assets/teaser.png" style="width:100%;"> -->
+  <video width="100%" autoplay muted loop playsinline poster="./assets/overview_poster.png">
+    <source src="./assets/overview.mp4" type="video/mp4">
+  </video>
   </div>
 
 
@@ -321,7 +325,7 @@
         <strong>4DNeX</strong> generates paired <strong>RGB</strong> and <strong>XYZ</strong> sequences, forming a unified <strong>6D representation</strong> of dynamic scenes.
       </p>
     </font>
-    <video width="100%" controls poster="./assets/6D_video_poster.png">
+    <video width="100%" autoplay muted loop playsinline poster="./assets/6D_video_poster.png">
       <source src="./assets/6D_video.mp4" type="video/mp4">
     </video>
   </div>
@@ -334,7 +338,7 @@
         The generated <strong>6D (RGB + XYZ) videos</strong> can be lifted into <strong>dynamic point clouds</strong>.
       </p>
     </font>
-    <video width="100%" controls poster="./assets/point_cloud_poster.png">
+    <video width="100%" autoplay muted loop playsinline poster="./assets/point_cloud_poster.png">
       <source src="./assets/point_cloud.mp4" type="video/mp4">
     </video>
     <font size="-0.">
@@ -342,7 +346,7 @@
         These dynamic point clouds can be visualized <strong>interactively</strong>.
       </p>
     </font>
-    <video width="100%" controls poster="./assets/viewer_poster.png">
+    <video width="100%" autoplay muted loop playsinline poster="./assets/viewer_poster.png">
       <source src="./assets/viewer.mp4" type="video/mp4">
     </video>
   </div>
@@ -355,7 +359,7 @@
         The generated <strong>dynamic point clouds</strong> empower downstream applications such as <strong>novel-view video synthesis</strong>.
       </p>
     </font>
-    <video width="100%" controls poster="./assets/novel_view_video_poster.png">
+    <video width="100%" autoplay muted loop playsinline poster="./assets/novel_view_video_poster.png">
       <source src="./assets/novel_view_video.mp4" type="video/mp4">
     </video>
   </div>
