@@ -95,10 +95,11 @@
   <!-- End new styles -->
 </head>
 
+
 <body>
   <div class="content">
-    <h1 style="line-height: 0.75;">
-      <strong>Feed-Forward 4D Generative Modeling Made Easy</strong>
+    <h1 style="line-height: 0.75; font-weight: bold;">
+      Feed-Forward 4D Generative Modeling Made Easy
     </h1>
     <!-- <p id="authors">
       <span>
@@ -137,41 +138,60 @@
       <span class="conference">ICLR 2025 (Spotlight)</span>
       <br>
       <br>
-    </p>
     </p> -->
 
-    <font size="+2">
-      <p style="text-align: center;">
-        <a href="" target="_blank">[Arxiv]</a> &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="" target="_blank">[YouTube]</a> &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="" target="_blank">[Code]</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="interactive-results/demo1.html" target="_blank">[Interactive Results]</a> &nbsp;&nbsp;&nbsp;&nbsp;
-        <!-- <a href="https://x.com/junyi42/status/1770799360353145037" target="_blank">[Twitter Post]</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
-        <!-- <a href="https://www.youtube.com/watch?v=fyhg50qlNW8" target="_blank">[Video]</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
-        <!-- <a href="files/bibtex.txt" target="_blank">[BibTeX]</a> -->
-      </p>
-    </font>
+    <div style="margin-top: 30px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; text-align: center;">
+      
+      <!-- Paper -->
+      <div>
+        <a href="" target="_blank" style="text-decoration: none; color: inherit;">
+          <img src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/5cab99df4998decfbf9e218e_paper-01-p-500.png" height="60px" alt="Paper Icon">
+          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Paper</div>
+        </a>
+      </div>
 
-    <a style="text-align:center">
-      <font size="+1">
+      <!-- Video -->
+      <div>
+        <a href="" target="_blank" style="text-decoration: none; color: inherit;">
+          <img src="assets/icons/youtube_icon.png" height="60px" alt="YouTube Icon">
+          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Video</div>
+        </a>
+      </div>
+
+      <!-- Code -->
+      <div>
+        <a href="" target="_blank" style="text-decoration: none; color: inherit;">
+          <img src="assets/icons/github.png" height="60px" alt="GitHub Icon">
+          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Code</div>
+        </a>
+      </div>
+
+      <!-- Interactive -->
+      <div>
+        <a href="interactive-results/demo1.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <img src="https://img.icons8.com/ios-filled/100/rocket.png" height="60px" alt="Demo Icon">
+          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Interactive Results</div>
+        </a>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <div class="content">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">TL;DR</h2>
+      <p>
         <strong>4DNeX</strong> is a <strong>feed-forward</strong> framework for generating 4D scene representations from a <strong>single image</strong> by fine-tuning a video diffusion model. It produces high-quality <strong>dynamic point clouds</strong> and enables downstream tasks such as <strong>novel-view video synthesis</strong> with strong generalizability.
-      </font>
-    </a>
-
-    <!-- add video files/teaser_vid_v2_lowres.mp4 -->
-    <!-- <video width="100%" controls> -->
+      </p>
+    <!-- <img class="summary-img" src="./assets/teaser.png" style="width:100%;"> -->
     <video width="100%" autoplay controls muted loop poster="./assets/teaser_poster.png">
       <source src="./assets/teaser.mp4" type="video/mp4">
     </video>
-    
-    <br>
-    <br>
-
   </div>
 
   <!-- Begin new content: Demos -->
 <div class="content">
-    <h2>Interactive 4D Visualization</h2>
+  <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Interactive 4D Visualization</h2>
     <p>Explore the 4D reconstruction results on various dynamic scenes. For more results, please visit the <a href="interactive-results/demo1.html" style="font-weight: bold; color: rgb(238, 60, 223);">interactive results</a>.</p>
     <!-- Unified Instruction Section -->
     <div class="instructions" style="margin-top: -0.5em; display: flex; flex-direction: column; align-items: center; gap: 1em; text-align: center;">
@@ -264,8 +284,7 @@
   <!-- End new content -->
 
   <div class="content">
-    <h2 style="text-align:center;">Abstract</h2>
-    <font size="-0.">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Abstract</h2>
       <p>
         We present <strong>4DNeX</strong>, the first feed-forward framework for generating 4D (<i>i.e.</i>, dynamic 3D) scene representations from a single image. In contrast to existing methods that rely on computationally intensive optimization or require multi-frame video inputs, 4DNeX enables efficient, end-to-end image-to-4D generation by fine-tuning a pretrained video diffusion model.
         Specifically:
@@ -274,7 +293,6 @@
         <strong>3)</strong> We propose a set of simple yet effective adaptation strategies to repurpose pretrained video diffusion models for the 4D generation task.
         4DNeX produces high-quality dynamic point clouds that enable novel-view video synthesis. Extensive experiments demonstrate that 4DNeX achieves competitive performance compared to existing 4D generation approaches, offering a scalable and generalizable solution for single-image-based 4D scene generation.
       </p>
-    </font>
   <!-- <img class="summary-img" src="./assets/teaser.png" style="width:100%;"> -->
   <video width="100%" autoplay controls muted loop poster="./assets/overview_poster.png">
     <source src="./assets/overview.mp4" type="video/mp4">
@@ -283,20 +301,17 @@
 
 
   <div class="content">
-    <h2 style="text-align:center;">Method</h2>
-    <font size="-0.">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Method</h2>
       <p style="text-align: justify; font-size: 1.05em;">
         Given <stronga single RGB image></strong> and an initialized XYZ map, <strong>4DNeX</strong> encodes both inputs using a VAE encoder and fuses them via <strong>width-wise concatenation</strong>. 
         The fused latent, combined with a noise latent and a guided mask, is processed by a LoRA-tuned Wan-DiT model to jointly generate <strong>RGB and XYZ videos</strong>. 
         A lightweight post-optimization step recovers camera parameters and depth maps from the predicted outputs, yielding consistent <strong>dynamic point clouds</strong>.
       </p>
-    </font>
     <img class="summary-img" src="./assets/pipeline.png" style="width:100%;">
   </div>
 
   <div class="content">
-    <h2 style="text-align:center;">Fusion strategies</h2>
-    <font size="-0.">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Fusion Strategies</h2>
       <p>
         We explore five fusion strategies to combine <strong>RGB</strong> and <strong>XYZ</strong> inputs:
       </p>
@@ -308,7 +323,6 @@
         <li><strong>(e) Width-wise:</strong> Brings RGB and XYZ tokens closer, enabling coherent joint generation.</li>
       </ul>
       <p>
-    </font>
     <!-- <img class="summary-img" src="./assets/fusion.png" style="width:100%;"> -->
     <img class="summary-img" src="./assets/analysis.png" style="width:100%;">
     <video width="100%" autoplay controls muted loop>
@@ -319,12 +333,10 @@
 
 
   <div class="content">
-    <h2 style="text-align:center;">Results - 6D (RGB+XYZ) Video</h2>
-    <font size="-0.">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Results - 6D (RGB+XYZ) Video</h2>
       <p style="text-align: justify; font-size: 1.05em;">
         <strong>4DNeX</strong> generates paired <strong>RGB</strong> and <strong>XYZ</strong> sequences, forming a unified <strong>6D representation</strong> of dynamic scenes.
       </p>
-    </font>
     <video width="100%" autoplay controls muted loop>
       <source src="./assets/6D_video.mp4" type="video/mp4">
     </video>
@@ -332,20 +344,16 @@
 
 
   <div class="content">
-    <h2 style="text-align:center;">Results - Dynamic Point Cloud</h2>
-    <font size="-0.">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Results - Dynamic Point Cloud</h2>
       <p style="text-align: justify; font-size: 1.05em;">
         The generated <strong>6D (RGB + XYZ) videos</strong> can be lifted into <strong>dynamic point clouds</strong>.
       </p>
-    </font>
     <video width="100%" autoplay controls muted loop>
       <source src="./assets/point_cloud.mp4" type="video/mp4">
     </video>
-    <font size="-0.">
       <p style="text-align: justify; font-size: 1.05em;">
         These dynamic point clouds can be visualized <strong>interactively</strong>.
       </p>
-    </font>
     <video width="100%" autoplay controls muted loop>
       <source src="./assets/viewer.mp4" type="video/mp4">
     </video>
@@ -353,12 +361,10 @@
 
 
   <div class="content">
-    <h2 style="text-align:center;">Results - Novel-view Video</h2>
-    <font size="-0.">
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Results - Novel-view Video</h2>
       <p style="text-align: justify; font-size: 1.05em;">
         The generated <strong>dynamic point clouds</strong> empower downstream applications such as <strong>novel-view video synthesis</strong>.
       </p>
-    </font>
     <video width="100%" autoplay controls muted loop>
       <source src="./assets/novel_view_video.mp4" type="video/mp4">
     </video>
@@ -366,7 +372,7 @@
 
 
   <div class="content">
-    <h2>BibTex</h2>
+    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">BibTex</h2>
     <font size="-0.">
   </font>
   </div>
