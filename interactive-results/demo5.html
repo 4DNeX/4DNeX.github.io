@@ -2,72 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>4DNeX Results</title>
+  <title>4DNeX Results - Demo 5</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { padding: 2em; font-family: sans-serif; }
-    iframe { border-radius: 0.5em; width: 40em; height: 40em; border: none; box-shadow: 0 0 1em rgba(0,0,0,0.15); }
-    @media (max-width: 768px) { iframe { width: 100%; height: 30em; } }
-    a, a:link { color: #777; }
+    body { padding: 2em; font-family: sans-serif; background-color: #000; color: #fff; }
+    iframe, video {
+      border-radius: 0.5em;
+      width: 360px;
+      height: 360px;
+      border: 1px solid #333;
+      box-shadow: 0 0 1em rgba(255,255,255,0.1);
+      background-color: #111;
+    }
+    @media (max-width: 768px) {
+      iframe, video { width: 100%; height: 300px; }
+    }
+    a, a:link { color: #ffdd57; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .instructions, .instructions_small {
       display: flex; justify-content: center; align-items: center;
       flex-wrap: wrap; text-align: center;
     }
     .instructions { gap: 2em; padding: 1em; font-size: 1.5em; }
-    .instruction-item { display: flex; align-items: center; gap: 0.5em; }
-    .instruction-item img { width: 36px; height: 36px; }
-
     .instructions_small { gap: 1.5em; padding: 0.75em; font-size: 1.25em; }
-    .instruction-item_small { display: flex; align-items: center; gap: 0.5em; }
+
+    .instruction-item, .instruction-item_small {
+      display: flex; align-items: center; gap: 0.5em;
+    }
+    .instruction-item img { width: 36px; height: 36px; }
     .instruction-item_small img { width: 30px; height: 30px; }
 
     .grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 2em;
+      gap: 2rem;
+      margin-top: 2rem;
     }
+
     .card {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.75em;
       max-width: 720px;
-      border-radius: 8px;
     }
-    iframe, video {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    video {
-      width: 360px;
-    }
-    button {
+
+    .card button {
       margin-top: 0.5em;
-      padding: 0.4em 1em;
+      padding: 0.6em 1.4em;
+      font-size: 1em;
       border: none;
-      border-radius: 4px;
-      background-color: #0077cc;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #E05260 0%, #DB5C88 50%, #C066D1 100%);
       color: white;
+      font-weight: 500;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: opacity 0.3s ease;
     }
-    button:hover {
-      background-color: #005fa3;
-    }
+    .card button:hover { opacity: 0.85; }
   </style>
 </head>
-
 <body>
-  <p style="text-align: center; font-size: 1.2em; font-weight: bold;">
-    Please click on other pages to see more results
+  <h1 style="text-align: center; font-size: 2em; color: #40A5EB;">🔍 4DNeX Interactive Results - Page 5</h1>
+  <p style="text-align: center; font-size: 1.2em; font-weight: bold; color: #ffec99;">
+    Click other pages below to see more examples
   </p>
   <div style="text-align: center; padding: 1em">
     <a href="demo1.html">Page 1</a> &nbsp;&bull;&nbsp;
     <a href="demo2.html">Page 2</a> &nbsp;&bull;&nbsp;
     <a href="demo3.html">Page 3</a> &nbsp;&bull;&nbsp;
     <a href="demo4.html">Page 4</a> &nbsp;&bull;&nbsp;
-    <a href="demo5.html">Page 5</a> <br/>
+    <a href="demo5.html"><strong>Page 5</strong></a> <br/>
     <a href="demo6.html">Page 6</a> &nbsp;&bull;&nbsp;
     <a href="demo7.html">Page 7</a> &nbsp;&bull;&nbsp;
     <a href="demo8.html">Page 8</a> &nbsp;&bull;&nbsp;
@@ -76,86 +84,48 @@
   </div>
 
   <div class="instructions">
-    <div class="instruction-item"><img src="../icons/left-click.png" /><span>Drag with <em>left</em> click to <strong>rotate</strong> view</span></div>
-    <div class="instruction-item"><img src="../icons/scroll-wheel.png" /><span>Scroll to <strong>zoom</strong> in/out</span></div>
-    <div class="instruction-item"><img src="../icons/right-click.png" /><span>Drag with <em>right</em> click to <strong>move</strong> view</span></div>
+    <div class="instruction-item"><img src="../static/images/icons/left-click.png" /><span>Rotate: <em>left click</em></span></div>
+    <div class="instruction-item"><img src="../static/images/icons/scroll-wheel.png" /><span>Zoom: <em>scroll</em></span></div>
+    <div class="instruction-item"><img src="../static/images/icons/right-click.png" /><span>Pan: <em>right click</em></span></div>
   </div>
 
   <div class="instructions_small">
-    <div class="instruction-item_small"><img src="../icons/letter-w.png" /><img src="../icons/letter-s.png" /><span>Moving forward and backward</span></div>
-    <div class="instruction-item_small"><img src="../icons/letter-a.png" /><img src="../icons/letter-d.png" /><span>Moving left and right</span></div>
-    <div class="instruction-item_small"><img src="../icons/letter-q.png" /><img src="../icons/letter-e.png" /><span>Moving upward and downward</span></div>
+    <div class="instruction-item_small"><img src="../static/images/icons/letter-w.png" /><img src="../static/images/icons/letter-s.png" /><span>Move: forward/backward</span></div>
+    <div class="instruction-item_small"><img src="../static/images/icons/letter-a.png" /><img src="../static/images/icons/letter-d.png" /><span>Move: left/right</span></div>
+    <div class="instruction-item_small"><img src="../static/images/icons/letter-q.png" /><img src="../static/images/icons/letter-e.png" /><span>Move: up/down</span></div>
   </div>
 
   <div class="grid">
-
     <div class="card">
-      <video controls>
-        <source src="https://4DNeX.github.io/recordings/videos/0006_00000.mp4" type="video/mp4" />
-      </video>
-      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00000.viser&initDistanceScale=0.1&initHeightOffset=2.0"
-              frameborder="0" id="viser-frame-0006_00000"></iframe>
-      <button onclick="window.open(document.getElementById('viser-frame-0006_00000').src, '_blank')">
-        Open in New Tab for Better Visualization
-      </button>
+      <video controls><source src="https://4DNeX.github.io/recordings/videos/0006_00000.mp4" type="video/mp4" /></video>
+      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00000.viser&initDistanceScale=0.1&initHeightOffset=2.0" id="viser-frame-0006_00000"></iframe>
+      <button onclick="window.open(document.getElementById('viser-frame-0006_00000').src, '_blank')">Open in New Tab for Better Visualization</button>
     </div>
-
     <div class="card">
-      <video controls>
-        <source src="https://4DNeX.github.io/recordings/videos/0006_00001.mp4" type="video/mp4" />
-      </video>
-      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00001.viser&initDistanceScale=0.1&initHeightOffset=3.0"
-              frameborder="0" id="viser-frame-0006_00001"></iframe>
-      <button onclick="window.open(document.getElementById('viser-frame-0006_00001').src, '_blank')">
-        Open in New Tab for Better Visualization
-      </button>
+      <video controls><source src="https://4DNeX.github.io/recordings/videos/0006_00001.mp4" type="video/mp4" /></video>
+      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00001.viser&initDistanceScale=0.1&initHeightOffset=3.0" id="viser-frame-0006_00001"></iframe>
+      <button onclick="window.open(document.getElementById('viser-frame-0006_00001').src, '_blank')">Open in New Tab for Better Visualization</button>
     </div>
-
     <div class="card">
-      <video controls>
-        <source src="https://4DNeX.github.io/recordings/videos/0006_00002.mp4" type="video/mp4" />
-      </video>
-      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00002.viser&initDistanceScale=0.1&initHeightOffset=3.0"
-              frameborder="0" id="viser-frame-0006_00002"></iframe>
-      <button onclick="window.open(document.getElementById('viser-frame-0006_00002').src, '_blank')">
-        Open in New Tab for Better Visualization
-      </button>
+      <video controls><source src="https://4DNeX.github.io/recordings/videos/0006_00002.mp4" type="video/mp4" /></video>
+      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00002.viser&initDistanceScale=0.1&initHeightOffset=3.0" id="viser-frame-0006_00002"></iframe>
+      <button onclick="window.open(document.getElementById('viser-frame-0006_00002').src, '_blank')">Open in New Tab for Better Visualization</button>
     </div>
-
     <div class="card">
-      <video controls>
-        <source src="https://4DNeX.github.io/recordings/videos/0006_00005.mp4" type="video/mp4" />
-      </video>
-      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00005.viser&initDistanceScale=0.1&initHeightOffset=3.0"
-              frameborder="0" id="viser-frame-0006_00005"></iframe>
-      <button onclick="window.open(document.getElementById('viser-frame-0006_00005').src, '_blank')">
-        Open in New Tab for Better Visualization
-      </button>
+      <video controls><source src="https://4DNeX.github.io/recordings/videos/0006_00005.mp4" type="video/mp4" /></video>
+      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00005.viser&initDistanceScale=0.1&initHeightOffset=3.0" id="viser-frame-0006_00005"></iframe>
+      <button onclick="window.open(document.getElementById('viser-frame-0006_00005').src, '_blank')">Open in New Tab for Better Visualization</button>
     </div>
-
     <div class="card">
-      <video controls>
-        <source src="https://4DNeX.github.io/recordings/videos/0006_00007.mp4" type="video/mp4" />
-      </video>
-      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00007.viser&initDistanceScale=0.1&initHeightOffset=0.0"
-              frameborder="0" id="viser-frame-0006_00007"></iframe>
-      <button onclick="window.open(document.getElementById('viser-frame-0006_00007').src, '_blank')">
-        Open in New Tab for Better Visualization
-      </button>
+      <video controls><source src="https://4DNeX.github.io/recordings/videos/0006_00007.mp4" type="video/mp4" /></video>
+      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0006_00007.viser&initDistanceScale=0.1&initHeightOffset=0.0" id="viser-frame-0006_00007"></iframe>
+      <button onclick="window.open(document.getElementById('viser-frame-0006_00007').src, '_blank')">Open in New Tab for Better Visualization</button>
     </div>
-
     <div class="card">
-      <video controls>
-        <source src="https://4DNeX.github.io/recordings/videos/0007_00004.mp4" type="video/mp4" />
-      </video>
-      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0007_00004.viser&initDistanceScale=0.1&initHeightOffset=2.0"
-              frameborder="0" id="viser-frame-0007_00004"></iframe>
-      <button onclick="window.open(document.getElementById('viser-frame-0007_00004').src, '_blank')">
-        Open in New Tab for Better Visualization
-      </button>
+      <video controls><source src="https://4DNeX.github.io/recordings/videos/0007_00004.mp4" type="video/mp4" /></video>
+      <iframe src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0007_00004.viser&initDistanceScale=0.1&initHeightOffset=2.0" id="viser-frame-0007_00004"></iframe>
+      <button onclick="window.open(document.getElementById('viser-frame-0007_00004').src, '_blank')">Open in New Tab for Better Visualization</button>
     </div>
-
-
   </div>
 </body>
 </html>

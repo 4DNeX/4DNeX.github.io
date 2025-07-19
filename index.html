@@ -1,388 +1,434 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Feed-Forward 4D Generative Modeling Made Easy</title>
-  <link href="./files/style.css" rel="stylesheet">
-  <script type="text/javascript" src="./files/jquery.mlens-1.0.min.js"></script>
-  <script type="text/javascript" src="./files/jquery.js"></script>
-  <style>
-    .divider {
-      border-right: 2px dashed #737373;
-      width: 2px;
-    }
-  </style>
-  <style>
-    .divider_horizontal {
-      border-top: 2px dashed #737373;
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-    }
-  </style>
-  <!-- Begin new styles from demos page -->
-  <style>
-    body {
-      padding: 2em;
-      font-family: sans-serif;
-    }
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description"
+    content="Feed-Forward 4D Generative Modeling Made Easy.">
+  <meta property="og:title" content="4DNeX" />
+  <meta property="og:description"
+    content="Feed-Forward 4D Generative Modeling Made Easy." />
+  <meta property="og:url" content="https://4DNeX.github.io/" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/images/teaser_1200x600.jpg" /> -->
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="600" />
 
-    iframe {
-      border-radius: 0.5em;
-      width: 27.5em;
-      height: 27.5em;
-      border: none;
-      box-shadow: 0 0 1em 0em rgba(0, 0, 0, 0.15);
-    }
 
-    @media (max-width: 768px) {
-      iframe {
-        width: 100%;
-        height: 30em;
-      }
-    }
+  <meta name="twitter:title" content="4DNeX">
+  <meta name="twitter:description"
+    content="Feed-Forward 4D Generative Modeling Made Easy.">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/teaser_1200x600.jpg"> -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    a,
-    a:link {
-      color: #777;
-    }
 
-    /* Styles for the instruction icons and text */
-    .instructions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.2em;
-      text-align: center;
-      padding: 0.6em;
-    }
+  <title>4DNeX</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
-    .instruction-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      font-size: 1.2em;
-    }
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
 
-    .instruction-item img {
-      width: 36px;
-      height: 36px;
-    }
-
-    .instructions_small {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1em;
-      text-align: center;
-      padding: 0.5em;
-    }
-
-    .instruction-item_small {
-      display: flex;
-      align-items: center;
-      gap: 0.3em;
-      font-size: 1.0em;
-    }
-
-    .instruction-item_small img {
-      width: 30px;
-      height: 30px;
-    }
-  </style>
-  <!-- End new styles -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 
-
 <body>
-  <div class="content">
-    <h1 style="line-height: 0.75; font-weight: bold;">
-      Feed-Forward 4D Generative Modeling Made Easy
-    </h1>
-    <!-- <p id="authors">
-      <span>
-        <a href="https://junyi42.github.io/">Junyi Zhang<sup>1</sup></a>
-      </span>
-      <span>
-        <a href="https://scholar.google.com/citations?user=LQvi5XAAAAAJ">Charles Herrmann<sup>2,+</sup></a>
-      </span>
-      <span>
-        <a href="https://hurjunhwa.github.io/">Junhwa Hur<sup>2</sup></a>
-      </span>
-      <span>
-        <a href="https://varunjampani.github.io/">Varun Jampani<sup>3</sup></a>
-      </span>
-      <span>
-        <a href="https://people.eecs.berkeley.edu/~trevor/">Trevor Darrell<sup>1</sup></a>
-      </span>
-      <br>
-      <span>
-        <a href="https://scholar.google.com/citations?user=xZRRr-IAAAAJ&hl">Forrester Cole<sup>2</sup></a>
-      </span>
-      <span>
-        <a href="https://deqings.github.io/">Deqing Sun<sup>2,*</sup></a>
-      </span>
-      <span>
-        <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang<sup>2,4,*</sup></a>
-      </span>
-      <br>
-      <span class="institution"><a href="https://bair.berkeley.edu/"><sup>1</sup> UC Berkeley</a>
-        <a href="https://deepmind.google/"><sup>2</sup> Google DeepMind</a>
-        <a href="https://stability.ai/"><sup>3</sup> Stability AI</a>
-        <a href="https://www.ucmerced.edu/"><sup>4</sup> UC Merced</a></span>
-      <span class="institution"></span>
-      <span class="institution">(+: project lead, *: equal contribution)</span>
-      <br>
-      <span class="conference">ICLR 2025 (Spotlight)</span>
-      <br>
-      <br>
-    </p> -->
-
-    <div style="margin-top: 30px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; text-align: center;">
-      
-      <!-- Paper -->
-      <div>
-        <a href="" target="_blank" style="text-decoration: none; color: inherit;">
-          <img src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/5cab99df4998decfbf9e218e_paper-01-p-500.png" height="60px" alt="Paper Icon">
-          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Paper</div>
-        </a>
+  <!-- > Hero -->
+  <section class="section has-background-black has-text-white" id="section_hero">
+    <div class="container is-max-desktop has-text-centered">
+      <!-- > Title -->
+      <div class="columns is-centered">
+        <div class="column">
+          <h1 class="title publication-title">
+            <span class="gradient-headline">Feed-Forward 4D Generative Modeling Made Easy</span>
+            <!-- <span class="pub-subtitle">Feed-Forward 4D Generative Modeling Made Easy</span> -->
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <!-- Paper authors -->
+            <!-- <span class="author-block">
+              <a href="https://github.com/krahets" target="_blank">Yudong Jin<sup>&nbsp;1</sup></a></span>
+            <span class="author-block">
+              <a href="https://pengsida.net/" target="_blank">Sida Peng<sup>&nbsp;1</sup></a></span>
+            <span class="author-block">
+              <a href="https://xuanwangvc.github.io/" target="_blank">Xuan Wang<sup>&nbsp;2</sup></a></span>
+            <span class="author-block">
+              <a href="https://github.com/xbillowy" target="_blank">Tao Xie<sup>&nbsp;1</sup></a></span>
+            <span class="author-block">
+              <a href="https://zhenx.me/" target="_blank">Zhen Xu<sup>&nbsp;1</sup></a></span>
+            <span class="author-block">
+              <a href="https://github.com/yangyifan18" target="_blank">Yifan Yang<sup>&nbsp;1</sup></a></span>
+            <span class="author-block">
+              <a href="https://shenyujun.github.io/" target="_blank">Yujun Shen<sup>&nbsp;2</sup></a></span>
+            <span class="author-block">
+              <a href="http://www.cad.zju.edu.cn/home/bao/" target="_blank">Hujun Bao<sup>&nbsp;1</sup></a></span>
+            <span class="author-block">
+              <a href="https://xzhou.me/" target="_blank">Xiaowei Zhou<sup>&nbsp;1†</sup></a></span> -->
+          </div>
+          <!-- Authors affiliation -->
+          <!-- <div class="publication-authors">
+            <div class="is-size-5">
+              <span class="author-block"><sup>1&nbsp;</sup>Zhejiang University</span>
+              <span class="author-block"><sup>2&nbsp;</sup>Ant Research</span>
+            </div>
+            <div class="is-size-6"><span class="author-block"><sup>†&nbsp;</sup>Corresponding Author</span></div>
+          </div> -->
+          <!-- Conference -->
+          <div class="is-size-5 publication-conference"></div>
+          <!-- Links -->
+          <div class="column">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="" target="_blank"
+                   class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="interactive-results/demo1.html" target="_blank"
+                   class="external-link button is-normal is-rounded is-light">
+                  <span class="icon"><i class="fas fa-vr-cardboard"></i></span>
+                  <span>Interactive Demo</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Video -->
-      <div>
-        <a href="" target="_blank" style="text-decoration: none; color: inherit;">
-          <img src="assets/icons/youtube_icon.png" height="60px" alt="YouTube Icon">
-          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Video</div>
-        </a>
+  <!-- > TL;DR < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">TL;DR</h2>
+      <div class="content has-text-left">
+        <p><b>4DNeX</b> is a <b>feed-forward</b> framework for generating 4D scene representations from <b>a single image</b> by fine-tuning a video diffusion model.
+          It produces high-quality <b>dynamic point clouds</b> and enables downstream tasks such as <b>novel-view video synthesis</b> with strong generalizability.</p>
       </div>
-
-      <!-- Code -->
-      <div>
-        <a href="" target="_blank" style="text-decoration: none; color: inherit;">
-          <img src="assets/icons/github.png" height="60px" alt="GitHub Icon">
-          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Code</div>
-        </a>
-      </div>
-
-      <!-- Interactive -->
-      <div>
-        <a href="interactive-results/demo1.html" target="_blank" style="text-decoration: none; color: inherit;">
-          <img src="https://img.icons8.com/ios-filled/100/rocket.png" height="60px" alt="Demo Icon">
-          <div style="font-weight: bold; color: #3b4cca; margin-top: 12px;">Interactive Results</div>
-        </a>
-      </div>
+      <video data-label="teaser" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/teaser.mp4">
+      </video>
     </div>
-    <br>
-    <br>
-  </div>
+  </section>
 
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">TL;DR</h2>
-      <p>
-        <strong>4DNeX</strong> is a <strong>feed-forward</strong> framework for generating 4D scene representations from a <strong>single image</strong> by fine-tuning a video diffusion model. It produces high-quality <strong>dynamic point clouds</strong> and enables downstream tasks such as <strong>novel-view video synthesis</strong> with strong generalizability.
-      </p>
-    <!-- <img class="summary-img" src="./assets/teaser.png" style="width:100%;"> -->
-    <video width="100%" autoplay controls muted loop poster="./assets/teaser_poster.png">
-      <source src="./assets/teaser.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <!-- Begin new content: Demos -->
-<div class="content">
-  <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Interactive 4D Visualization</h2>
-    <p>Explore the 4D reconstruction results on various dynamic scenes. For more results, please visit the <a href="interactive-results/demo1.html" style="font-weight: bold; color: rgb(238, 60, 223);">interactive results</a>.</p>
-    <!-- Unified Instruction Section -->
-    <div class="instructions" style="margin-top: -0.5em; display: flex; flex-direction: column; align-items: center; gap: 1em; text-align: center;">
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Interactive Demo</h2>
+      <!-- Unified Instruction Section -->
+      <div class="instructions"
+      style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1em; text-align: center;">
 
       <!-- Row 1: Mouse Controls -->
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2em; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 0.5em;">
-          <img src="icons/left-click.png" alt="Left Click" style="width: 36px; height: 36px;">
-          <span>Drag with <em>left</em> click to <strong>rotate</strong> view</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.5em;">
-          <img src="icons/scroll-wheel.png" alt="Scroll Wheel" style="width: 36px; height: 36px;">
-          <span>Scroll to <strong>zoom</strong> in/out</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.5em;">
-          <img src="icons/right-click.png" alt="Right Click" style="width: 36px; height: 36px;">
-          <span>Drag with <em>right</em> click to <strong>move</strong> view</span>
-        </div>
+      <div style="display: flex; align-items: center; gap: 0.5em;">
+      <img src="static/images/icons/left-click.png" alt="Left Click" style="width: 36px; height: 36px;">
+      <b style="color: white;">Drag with <em>left</em> click to rotate view</b>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5em;">
+      <img src="static/images/icons/scroll-wheel.png" alt="Scroll Wheel" style="width: 36px; height: 36px;">
+      <b style="color: white;">Scroll to zoom in/out</b>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5em;">
+      <img src="static/images/icons/right-click.png" alt="Right Click" style="width: 36px; height: 36px;">
+      <b style="color: white;">Drag with <em>right</em> click to move view</b>
+      </div>
       </div>
 
       <!-- Row 2: Keyboard Controls -->
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2em; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 0.3em;">
-          <img src="icons/letter-w.png" alt="W" style="width: 30px; height: 30px;">
-          <img src="icons/letter-s.png" alt="S" style="width: 30px; height: 30px;">
-          <span>Move forward/backward</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.3em;">
-          <img src="icons/letter-a.png" alt="A" style="width: 30px; height: 30px;">
-          <img src="icons/letter-d.png" alt="D" style="width: 30px; height: 30px;">
-          <span>Move left/right</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.3em;">
-          <img src="icons/letter-q.png" alt="Q" style="width: 30px; height: 30px;">
-          <img src="icons/letter-e.png" alt="E" style="width: 30px; height: 30px;">
-          <span>Move up/down</span>
-        </div>
+      <div style="display: flex; align-items: center; gap: 0.3em;">
+      <img src="static/images/icons/letter-w.png" alt="W" style="width: 30px; height: 30px;">
+      <img src="static/images/icons/letter-s.png" alt="S" style="width: 30px; height: 30px;">
+      <b style="color: white;">Move forward/backward</b>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.3em;">
+      <img src="static/images/icons/letter-a.png" alt="A" style="width: 30px; height: 30px;">
+      <img src="static/images/icons/letter-d.png" alt="D" style="width: 30px; height: 30px;">
+      <b style="color: white;">Move left/right</b>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.3em;">
+      <img src="static/images/icons/letter-q.png" alt="Q" style="width: 30px; height: 30px;">
+      <img src="static/images/icons/letter-e.png" alt="E" style="width: 30px; height: 30px;">
+      <b style="color: white;">Move up/down</b>
+      </div>
+      </div>
       </div>
 
+      <!-- 视频 + viser 区域 -->
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
+        <!-- 视频 -->
+        <div style="width: 450px; border-radius: 12px; padding: 0.5rem;">
+          <h3 style="color: white; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">
+            Generated Video
+          </h3>
+          <video id="main-video" controls autoplay muted loop playsinline
+                style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+            <source src="https://4dnex.github.io/recordings/videos/0015_00005.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- viser -->
+        <div style="width: 450px; border-radius: 12px; padding: 0.5rem;">
+          <h3 style="color: white; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">
+            Generated 4D Scene
+          </h3>
+          <iframe
+            id="main-iframe"
+            src="https://4dnex.github.io/build/?playbackPath=https://4dnex.github.io/recordings/recording_0015_00005.viser&initDistanceScale=0.1&initHeightOffset=5.0"
+            width="100%" height="300" frameborder="0"
+            style="border-radius: 8px; background-color: black;" allowfullscreen>
+          </iframe>
+          <p style="text-align: center; margin-top: 0.3rem;">
+            <button onclick="window.open(document.getElementById('main-iframe').src, '_blank')"
+                    style="
+                      padding: 0.8em 1.4em;
+                      font-size: 1em;
+                      font-weight: 500;
+                      color: white;
+                      background: linear-gradient(90deg, #E05260 0%, #DB5C88 50%, #C066D1 100%);
+                      border: none;
+                      border-radius: 14px;
+                      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                      text-align: center;
+                      cursor: pointer;
+                      transition: opacity 0.3s ease;
+                    "
+                    onmouseover="this.style.opacity='0.85';"
+                    onmouseout="this.style.opacity='1';">
+              Open in New Tab for Better Visualization
+            </button>
+          </p>
+        </div>
+      </div>
+      <!-- 缩略图导航 -->
+      <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <img src="static/images/thumbs/thumb3.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0015_00005', 0.1, 5.0)">
+        <img src="static/images/thumbs/thumb1.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('00000', 0.1, 0.0)">
+        <img src="static/images/thumbs/thumb2.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0000_00006', 0.1, 5.0)">
+        <img src="static/images/thumbs/thumb4.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0001_00003', 0.1, 3.0)">
+        <img src="static/images/thumbs/thumb5.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0015_00003', 0.1, 5.0)">
+        <img src="static/images/thumbs/thumb6.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0000_00001', 0.1, 0.0)">
+        <img src="static/images/thumbs/thumb7.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0002_00002', 0.1, 4.0)">
+          <img src="static/images/thumbs/thumb8.png" width="100" height="70" style="object-fit: cover; border-radius: 6px; cursor: pointer;"
+            onclick="setDemo('0014_00005', 0.1, 4.0)">
+      </div>
     </div>
 
-  <!-- Downsampling note -->
-  <p style="text-align: center; font-size: 1em; padding: 0em; color: #555;">
-  </p>
+    <!-- 切换脚本 -->
+    <script>
+      function setDemo(id, scale, offset) {
+        const videoPath = `https://4dnex.github.io/recordings/videos/${id}.mp4`;
+        const viserPath = `https://4dnex.github.io/build/?playbackPath=https://4dnex.github.io/recordings/recording_${id}.viser&initDistanceScale=${scale}&initHeightOffset=${offset}`;
+        const video = document.getElementById('main-video');
+        const source = video.querySelector('source');
+        source.src = videoPath;
+        video.load();
+        document.getElementById('main-iframe').src = viserPath;
+      }
+    </script>
 
-  <!-- Wrapper for iframes -->
-  <div id="wrapper" style="
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 2em;
-      ">
-    <!-- Insert two iframes -->
-    <!-- Wrapper 1 -->
-  <div style="margin-bottom: 2em; text-align: center;">
-    <iframe
-      id="viser-frame-00000"
-      src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0015_00005.viser&initDistanceScale=0.1&initHeightOffset=4.0"
-      width="600"
-      height="300"
-      frameborder="0"
-      style="border-radius: 8px;">
-    </iframe>
-    <br>
-    <button onclick="window.open(document.getElementById('viser-frame-00000').src, '_blank')">
-      Open in New Tab for Better Visualization
-    </button>
-  </div>
+    <div style="margin-top: 3rem; display: flex; justify-content: center;">
+      <a href="./interactive-results/demo1.html" target="_blank"
+        style="
+          display: block;
+          width: 100%;
+          max-width: 960px;
+          background: linear-gradient(90deg, #E05260 0%, #DB5C88 50%, #C066D1 100%);
+          color: white;
+          font-weight: 500;
+          font-size: 1rem;
+          padding: 0.8em 1.5em;
+          border-radius: 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          text-align: center;
+          text-decoration: none;
+          transition: opacity 0.3s ease;
+        "
+        onmouseover="this.style.opacity='0.85';"
+        onmouseout="this.style.opacity='1';">
+        Explore more interactive results!
+      </a>
+    </div>
 
-  <!-- Wrapper 2 -->
-  <div style="margin-bottom: 2em; text-align: center;">
-    <iframe
-      id="viser-frame-00006"
-      src="https://4DNeX.github.io/build/?playbackPath=https://4DNeX.github.io/recordings/recording_0014_00005.viser&initDistanceScale=0.1&initHeightOffset=4.0"
-      width="600"
-      height="300"
-      frameborder="0"
-      style="border-radius: 8px;">
-    </iframe>
-    <br>
-    <button onclick="window.open(document.getElementById('viser-frame-00006').src, '_blank')">
-      Open in New Tab for Better Visualization
-    </button>
-  </div>
-</div>
-
-  </div>
-
-  <!-- End new content -->
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Abstract</h2>
-      <p>
-        We present <strong>4DNeX</strong>, the first feed-forward framework for generating 4D (<i>i.e.</i>, dynamic 3D) scene representations from a single image. In contrast to existing methods that rely on computationally intensive optimization or require multi-frame video inputs, 4DNeX enables efficient, end-to-end image-to-4D generation by fine-tuning a pretrained video diffusion model.
-        Specifically:
-        <strong>1)</strong> To alleviate the scarcity of 4D data, we construct <em>4DNeX-1M</em>, a large-scale dataset with high-quality 4D annotations generated using advanced reconstruction approaches.
-        <strong>2)</strong> We introduce a unified 6D video representation that jointly models RGB and XYZ sequences, facilitating structured learning of both appearance and geometry.
-        <strong>3)</strong> We propose a set of simple yet effective adaptation strategies to repurpose pretrained video diffusion models for the 4D generation task.
-        4DNeX produces high-quality dynamic point clouds that enable novel-view video synthesis. Extensive experiments demonstrate that 4DNeX achieves competitive performance compared to existing 4D generation approaches, offering a scalable and generalizable solution for single-image-based 4D scene generation.
-      </p>
-  <!-- <img class="summary-img" src="./assets/teaser.png" style="width:100%;"> -->
-  <video width="100%" autoplay controls muted loop poster="./assets/overview_poster.png">
-    <source src="./assets/overview.mp4" type="video/mp4">
-  </video>
-  </div>
-
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Method</h2>
-      <p style="text-align: justify; font-size: 1.05em;">
-        Given <stronga single RGB image></strong> and an initialized XYZ map, <strong>4DNeX</strong> encodes both inputs using a VAE encoder and fuses them via <strong>width-wise concatenation</strong>. 
-        The fused latent, combined with a noise latent and a guided mask, is processed by a LoRA-tuned Wan-DiT model to jointly generate <strong>RGB and XYZ videos</strong>. 
-        A lightweight post-optimization step recovers camera parameters and depth maps from the predicted outputs, yielding consistent <strong>dynamic point clouds</strong>.
-      </p>
-    <img class="summary-img" src="./assets/pipeline.png" style="width:100%;">
-  </div>
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Fusion Strategies</h2>
-      <p>
-        We explore five fusion strategies to combine <strong>RGB</strong> and <strong>XYZ</strong> inputs:
-      </p>
-      <ul>
-        <li><strong>(a) Channel-wise:</strong> Breaks pretrained distribution; often fails to generate meaningful outputs.</li>
-        <li><strong>(b) Batch-wise:</strong> Preserves unimodal quality but lacks RGB–XYZ alignment.</li>
-        <li><strong>(c) Frame-wise:</strong> Keeps temporal order but weak cross-modal interaction.</li>
-        <li><strong>(d) Height-wise:</strong> Slightly better alignment, still suboptimal.</li>
-        <li><strong>(e) Width-wise:</strong> Brings RGB and XYZ tokens closer, enabling coherent joint generation.</li>
-      </ul>
-      <p>
-    <!-- <img class="summary-img" src="./assets/fusion.png" style="width:100%;"> -->
-    <img class="summary-img" src="./assets/analysis.png" style="width:100%;">
-    <video width="100%" autoplay controls muted loop>
-      <source src="./assets/ab.mp4" type="video/mp4">
-    </video>
-  </div>
-
-
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Results - 6D (RGB+XYZ) Video</h2>
-      <p style="text-align: justify; font-size: 1.05em;">
-        <strong>4DNeX</strong> generates paired <strong>RGB</strong> and <strong>XYZ</strong> sequences, forming a unified <strong>6D representation</strong> of dynamic scenes.
-      </p>
-    <video width="100%" autoplay controls muted loop>
-      <source src="./assets/6D_video.mp4" type="video/mp4">
-    </video>
-  </div>
-
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Results - Dynamic Point Cloud</h2>
-      <p style="text-align: justify; font-size: 1.05em;">
-        The generated <strong>6D (RGB + XYZ) videos</strong> can be lifted into <strong>dynamic point clouds</strong>.
-      </p>
-    <video width="100%" autoplay controls muted loop>
-      <source src="./assets/point_cloud.mp4" type="video/mp4">
-    </video>
-      <p style="text-align: justify; font-size: 1.05em;">
-        These dynamic point clouds can be visualized <strong>interactively</strong>.
-      </p>
-    <video width="100%" autoplay controls muted loop>
-      <source src="./assets/viewer.mp4" type="video/mp4">
-    </video>
-  </div>
-
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">Results - Novel-view Video</h2>
-      <p style="text-align: justify; font-size: 1.05em;">
-        The generated <strong>dynamic point clouds</strong> empower downstream applications such as <strong>novel-view video synthesis</strong>.
-      </p>
-    <video width="100%" autoplay controls muted loop>
-      <source src="./assets/novel_view_video.mp4" type="video/mp4">
-    </video>
-  </div>
-
-
-  <div class="content">
-    <h2 style="text-align:center; font-size: 2em; font-weight: bold;">BibTex</h2>
-    <font size="-0.">
-  </font>
-  </div>
+  </section>
   
-  <div class="content" id="acknowledgements">
-    <p><strong>Acknowledgements</strong>:
-      Thanks to <a href="https://monst3r-project.github.io/">MonST3R</a> for the website template and interactive 4D visualization.
-      <!-- Recycling a familiar <a href="https://chail.github.io/latent-composition/">template</a> ;). -->
-    </p>
-  </div>
+
+  <!-- > Abstract < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Abstract</h2>
+      <div class="content has-text-left">
+        <p>
+          We present <b>4DNeX</b>, the first feed-forward framework for generating 4D (<i>i.e.</i>, dynamic 3D) scene representations from a single image. 
+          In contrast to existing methods that rely on computationally intensive optimization or require multi-frame video inputs, <b>4DNeX</b> enables efficient, end-to-end image-to-4D generation by fine-tuning a pretrained video diffusion model.
+          Specifically: <b>1)</b> To alleviate the scarcity of 4D data, we construct <i>4DNeX-1M</i>, a large-scale dataset with high-quality 4D annotations generated using advanced reconstruction approaches. 
+          <b>2)</b> We introduce a unified 6D video representation that jointly models RGB and XYZ sequences, facilitating structured learning of both appearance and geometry. 
+          <b>3)</b> We propose a set of simple yet effective adaptation strategies to repurpose pretrained video diffusion models for the 4D generation task.
+          <b>4DNeX</b> produces high-quality dynamic point clouds that enable novel-view video synthesis. Extensive experiments demonstrate that <b>4DNeX</b> achieves competitive performance compared to existing 4D generation approaches, offering a scalable and generalizable solution for single-image-based 4D scene generation.
+        </p>
+      </div>
+      <video data-label="overview" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/overview.mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- > Method < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Method</h2>
+      <div class="content has-text-left">
+        <p>
+          Given an initialized XYZ map, <b>4DNeX</b> encodes both inputs using a VAE encoder and fuses them via <b>width-wise concatenation</b>. 
+          The fused latent, combined with a noise latent and a guided mask, is processed by a LoRA-tuned Wan-DiT model to jointly generate <b>RGB and XYZ videos</b>. 
+          A lightweight post-optimization step recovers camera parameters and depth maps from the predicted outputs, yielding consistent <b>dynamic point clouds</b>.
+        </p>
+      </div>
+      <div class="figure-container">
+        <img src="static/images/pipeline.png" alt="4DNeX pipeline">
+      </div>
+    </div>
+  </section>
+
+  <!-- > Fusion Strategies < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Fusion Strategies</h2>
+      <div class="content has-text-left">
+        <p>
+          We explore five fusion strategies to combine <b>RGB</b> and <b>XYZ</b> inputs:
+        </p>
+        <ul>
+          <li><b>(a) Channel-wise:</b> Breaks pretrained distribution; often fails to generate meaningful outputs.</li>
+          <li><b>(b) Batch-wise:</b> Preserves unimodal quality but lacks RGB-XYZ alignment.</li>
+          <li><b>(c) Frame-wise:</b> Keeps temporal order but weak cross-modal interaction.</li>
+          <li><b>(d) Height-wise:</b> Slightly better alignment, still suboptimal.</li>
+          <li><b>(e) Width-wise:</b> Brings RGB and XYZ tokens closer, enabling coherent joint generation.</li>
+        </ul>
+      </div>
+      <div class="figure-container">
+        <img src="static/images/analysis.png" alt="4DNeX Fusion Strategies">
+      </div>
+      <video data-label="ablation" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/ablation.mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- > Results - 6D (RGB+XYZ) Video < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Results - 6D (RGB+XYZ) Video</h2>
+      <div class="content has-text-left">
+        <p>
+          <b>4DNeX</b> generates paired <b>RGB</b> and <b>XYZ</b> sequences, forming a unified <b>6D representation</b> of dynamic scenes.
+        </p>
+      </div>
+      <video data-label="6Dvideo" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/6Dvideo.mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- > Results - Dynamic Point Cloud < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Results - Dynamic Point Cloud</h2>
+      <div class="content has-text-left">
+        <p>
+          The generated <b>6D (RGB + XYZ) videos</b> can be lifted into <b>dynamic point clouds</b>.
+        </p>
+      </div>
+      <video data-label="point_render" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/point_render.mp4">
+      </video>
+      <div class="content has-text-left">
+        <p>
+          These dynamic point clouds can be visualized <b>interactively</b>.
+        </p>
+      </div>
+      <video data-label="rerun_viewer" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/rerun_viewer.mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- > Results - Novel-view Video < -->
+  <section class="section has-background-black has-text-white" id="section_method">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Results - Novel-view Video</h2>
+      <div class="content has-text-left">
+        <p>
+          The generated <b>dynamic point clouds</b> empower downstream applications such as <b>novel–view video synthesis</b>.
+        </p>
+      </div>
+      <video data-label="novel-view-video" preload="auto" autoplay controls muted loop playsinline
+        src="static/videos/novel-view-video.mp4">
+      </video>
+    </div>
+  </section>
+
+  
+  <!-- > BibTex citation -->
+  <section class="section has-background-black has-text-white" id="section_bibtex">
+    <div class="container is-max-desktop">
+      <h2 class="title">BibTeX</h2>
+      <pre><code class="is-small"></code></pre>
+    </div>
+  </section>
+
+  <!-- > Footer -->
+  <footer class="footer has-background-black has-text-white">
+    <div class="container is-max-desktop" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #1C1C1E;">
+      <p>
+        This website is adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.<br>
+        The interactive 4D visualization is inspired by <a href="https://monst3r-project.github.io/" target="_blank">MonST3R</a> and built using <a href="https://github.com/nerfstudio-project/viser" target="_blank">Viser</a>.
+      </p>
+    </div>
+  </footer>
+
 </body>
 
 </html>
