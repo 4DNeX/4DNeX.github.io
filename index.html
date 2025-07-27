@@ -303,7 +303,7 @@
         <p>
           We present <b>4DNeX</b>, the first feed-forward framework for generating 4D (<i>i.e.</i>, dynamic 3D) scene representations from a single image. 
           In contrast to existing methods that rely on computationally intensive optimization or require multi-frame video inputs, <b>4DNeX</b> enables efficient, end-to-end image-to-4D generation by fine-tuning a pretrained video diffusion model.
-          Specifically: <b>1)</b> To alleviate the scarcity of 4D data, we construct <i>4DNeX-1M</i>, a large-scale dataset with high-quality 4D annotations generated using advanced reconstruction approaches. 
+          Specifically: <b>1)</b> To alleviate the scarcity of 4D data, we construct <i>4DNeX-10M</i>, a large-scale dataset with high-quality 4D annotations generated using advanced reconstruction approaches. 
           <b>2)</b> We introduce a unified 6D video representation that jointly models RGB and XYZ sequences, facilitating structured learning of both appearance and geometry. 
           <b>3)</b> We propose a set of simple yet effective adaptation strategies to repurpose pretrained video diffusion models for the 4D generation task.
           <b>4DNeX</b> produces high-quality dynamic point clouds that enable novel-view video synthesis. Extensive experiments demonstrate that <b>4DNeX</b> achieves competitive performance compared to existing 4D generation approaches, offering a scalable and generalizable solution for single-image-based 4D scene generation.
@@ -354,6 +354,31 @@
       <video data-label="ablation" preload="auto" autoplay controls muted loop playsinline
         src="static/videos/ablation.mp4">
       </video>
+    </div>
+  </section>
+
+  <!-- > Dataset < -->
+  <section class="section has-background-black has-text-white" id="section_dataset">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">Dataset</h2>
+      <div class="content has-text-left">
+        <p>
+          We present <b>4DNeX-10M</b>, a large-scale dataset with over 10 million frames across diverse static and dynamic scenes, including indoor, outdoor, close-range, far-range, high-speed, and human-centric scenarios. 
+          Pseudo-4D annotations are generated using off-the-shelf reconstruction models, followed by multi-stage filtering to ensure geometric accuracy and scene diversity.
+        </p>
+      </div>
+      <div class="columns is-centered is-vcentered">
+        <div class="column is-half has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="static/images/data_pipe.png" alt="Data Curation Pipeline" style="max-width: 100%;">
+          </figure>
+        </div>
+        <div class="column is-half has-text-centered">
+          <figure class="image is-inline-block">
+            <img src="static/images/data_vis.png" alt="Data Visualization" style="max-width: 100%;">
+          </figure>
+        </div>
+      </div>
     </div>
   </section>
 
