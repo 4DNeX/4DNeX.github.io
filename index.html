@@ -93,7 +93,7 @@
           <div class="column">
             <div class="publication-links">
               <span class="link-block">
-                <a href="" target="_blank"
+                <a href="https://arxiv.org/abs/2508.13154" target="_blank"
                   class="external-link button is-normal is-rounded is-light">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
@@ -448,10 +448,26 @@
   <!-- > BibTex citation -->
   <section class="section has-background-black has-text-white" id="section_bibtex">
     <div class="container is-max-desktop">
-      <h2 class="title">BibTeX</h2>
-      <pre><code class="is-small"></code></pre>
+      <h2 class="title has-text-centered">BibTeX</h2>
+      <pre><code class="is-small bibtex-block">@article{chen20254dnex,
+    title={4DNeX: Feed-Forward 4D Generative Modeling Made Easy},
+    author={Chen, Zhaoxi and Liu, Tianqi and Zhuo, Long and Ren, Jiawei and Tao, Zeng and Zhu, He and Hong, Fangzhou and Pan, Liang and Liu, Ziwei},
+    journal={arXiv preprint arXiv:2508.13154},
+    year={2025}
+  }</code></pre>
     </div>
   </section>
+
+  <style>
+    /* 让 code 保持块级，强制左对齐，保留缩进 */
+    .bibtex-block {
+      display: block;
+      text-align: left !important;
+      white-space: pre;      /* 保留原有缩进格式 */
+      font-family: monospace;
+    }
+  </style>
+
 
   <!-- > Footer -->
   <footer class="footer has-background-black has-text-white">
